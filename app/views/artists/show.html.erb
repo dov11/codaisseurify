@@ -3,6 +3,8 @@
 <%@artist.songs.each do |song| %>
 <p>
   <%= link_to song.name, artist_song_path(@artist, song)%>
-  <span><%= link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: { confirm: "Are you sure?" }%></span> 
+  <span><%= link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: { confirm: "Are you sure?" }%></span>
 </p>
   <%end%>
+
+  <%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
