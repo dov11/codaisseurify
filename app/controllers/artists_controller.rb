@@ -6,10 +6,14 @@ class ArtistsController < ApplicationController
     @artist=Artist.find(params[:id])
   end
 
+  def new
+    @artist = Artist.new
+  end
+
   def destroy
     artist = set_artist
     artist.pictures.destroy_all
-    artist.songs.destroy_all    
+    artist.songs.destroy_all
     artist.destroy
     redirect_to root_path, notice: "Artist destroyed"
   end
