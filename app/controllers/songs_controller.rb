@@ -17,7 +17,15 @@ class SongsController < ApplicationController
     end
   end
 
-  def edit;  end
+  def edit
+    @song = set_song
+    @artist = set_artist
+  end
+
+  def update
+    set_song.update(song_params)
+    redirect_to artist_path(set_artist), notice: "Song updated"
+  end
 
   def destroy
     song = set_song
