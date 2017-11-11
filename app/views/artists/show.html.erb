@@ -1,5 +1,7 @@
 <h1>Songs by <%=@artist.name%></h1>
+<%if @artist.pictures.first%>
 <%= image_tag @artist.pictures.first.image_url.thumbnail %>
+<%end%>
 <%@artist.songs.each do |song| %>
 <p class="jumbotron">
   <%= link_to song.name, artist_song_path(@artist, song)%>

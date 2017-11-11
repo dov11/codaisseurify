@@ -16,14 +16,8 @@
   <%= f.date_select :active_since %>
 </div>
 
-
-<div class="form-group">
-  <label>Length(s):</label>
-  <%= f.number_field :length %>
+<div class="actions">
+  <%= f.submit "Save", class: "btn btn-primary" %>
 </div>
 
-
-  <div class="actions">
-    <%= f.submit "Save", class: "btn btn-primary" %>
-  </div>
 <% end %>
