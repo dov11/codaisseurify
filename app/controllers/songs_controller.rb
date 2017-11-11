@@ -1,8 +1,20 @@
 class SongsController < ApplicationController
   def show
-    @song=Song.find(params[:id])
     @artist_name=name_of_song_artist
     # @duration = @song.convert_to_time
+  end
+  def new
+    @song = set_artist.songs.build
+  end
+
+  def create
+    @song = set_songs.songs.build(song_params)
+
+    if @song.save
+      redirect_to edit_artist_song_path(set_artist, @song), notice: "Song created"
+    else
+      render :new
+    end
   end
   # def convert_to_time
   #   minutes = (@song.length / 60) % 60
@@ -10,7 +22,20 @@ class SongsController < ApplicationController
   #   format("%02d:%02d", minutes, seconds)
   # end
   private
+  def set_song
+    @song=Song.find(params[:id])
+  end
+
+  def set_artist
+    @artist = Artist.find(params[:artist_id])
+  end
+
+  def song_params
+    params
+    .require(:song)
+    .permit(:name, :length, :release_date)
+  end
   def name_of_song_artist
-    @song.artist.name
+    set_song.artist.name
   end
 end
