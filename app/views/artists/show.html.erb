@@ -1,5 +1,7 @@
 <h1>Songs by <%=@artist.name%></h1>
+<%if @artist.pictures.first%>
 <%= image_tag @artist.pictures.first.image_url.thumbnail %>
+<%end%>
 <%@artist.songs.each do |song| %>
 <p class="jumbotron">
   <%= link_to song.name, artist_song_path(@artist, song)%>
@@ -7,6 +9,7 @@
   <span><%= link_to "Edit song", edit_artist_song_path(@artist, song), class: "btn btn-info"%></span>
 </p>
   <%end%>
-  <%= link_to "Add Song", new_artist_song_path(@artist), class: "btn btn-success" %>
 
-  <%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
+<%= link_to "Add Song", new_artist_song_path(@artist), class: "btn btn-success" %>
+
+<%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
