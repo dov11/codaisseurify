@@ -17,14 +17,19 @@ class SongsController < ApplicationController
     end
   end
 
-  def edit
+  def edit;  end
 
+  def destroy
+    song = set_song
+    song.destroy
+    redirect_to artist_path(set_artist), notice: "Song deleted"
   end
   # def convert_to_time
   #   minutes = (@song.length / 60) % 60
   #   seconds = @song.length % 60
   #   format("%02d:%02d", minutes, seconds)
   # end
+
   private
   def set_song
     @song=Song.find(params[:id])
@@ -39,7 +44,9 @@ class SongsController < ApplicationController
     .require(:song)
     .permit(:name, :length, :release_date)
   end
+
   def name_of_song_artist
     set_song.artist.name
   end
+
 end
