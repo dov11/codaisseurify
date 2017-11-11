@@ -8,13 +8,17 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = set_songs.songs.build(song_params)
+    @song = set_artist.songs.build(song_params)
 
     if @song.save
-      redirect_to edit_artist_song_path(set_artist, @song), notice: "Song created"
+      redirect_to artist_path(set_artist), notice: "Song created"
     else
       render :new
     end
+  end
+
+  def edit
+
   end
   # def convert_to_time
   #   minutes = (@song.length / 60) % 60
