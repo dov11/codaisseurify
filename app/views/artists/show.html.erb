@@ -6,5 +6,6 @@
   <span><%= link_to "Delete song", artist_song_path(@artist, song), method: :delete, data: { confirm: "Are you sure?" }%></span>
 </p>
   <%end%>
+  <%= link_to "Add Song", new_artist_song_path(@artist), class: "btn btn-success" %>
 
-  <%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
+  <%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
