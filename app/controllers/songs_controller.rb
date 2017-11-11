@@ -23,8 +23,11 @@ class SongsController < ApplicationController
   end
 
   def update
-    set_song.update(song_params)
-    redirect_to artist_path(set_artist), notice: "Song updated"
+    if set_song.update(song_params)
+      redirect_to artist_path(set_artist), notice: "Song updated"
+    else
+      render :edit #needs fixing
+    end
   end
 
   def destroy
