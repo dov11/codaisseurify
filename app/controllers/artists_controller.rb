@@ -13,6 +13,16 @@ class ArtistsController < ApplicationController
     render :index
   end
 
+  def index_sort_created_asc
+    @artists = Artist.sort_by_created_asc
+    render :index
+  end
+
+  def index_sort_created_des
+    @artists = Artist.sort_by_created_des
+    render :index
+  end
+
   def show
     @artist=set_artist
   end

@@ -16,4 +16,12 @@ class Artist < ApplicationRecord
     self.order('name desc')
   end
 
+  def self.sort_by_created_asc
+    self.order('created_at asc')
+  end
+
+  def self.sort_by_created_des
+    self.order('created_at desc')
+  end
+
 end
