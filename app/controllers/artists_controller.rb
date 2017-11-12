@@ -4,7 +4,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @artist=Artist.find(params[:id])
+    @artist=set_artist
   end
 
   def new
@@ -25,8 +25,13 @@ class ArtistsController < ApplicationController
 
   def destroy
     artist = set_artist
-    artist.destroy
-    redirect_to root_path, notice: "Artist destroyed"
+    if !artist.core_artist?
+      artist.destroy
+      redirect_to root_path, notice: "Artist destroyed"
+    else
+      flash[:alert] = "Core artists cannot be destroyed, you can try to destroy other artists"
+      render :show
+    end
   end
 
   private

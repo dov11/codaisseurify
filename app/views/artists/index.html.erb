@@ -5,6 +5,8 @@
     <div class="thumbnail">
       <%if artist.pictures.first%>
       <%= image_tag artist.pictures.first.image_url.thumbnail %>
+      <%else%>
+      <img alt="Artist picture" style="height: 150px; width: 150px; display: block;" src="http://res.cloudinary.com/dov11/image/upload/c_crop,h_366,w_366/v1510476250/366px-Musician_Holding_Bagpipes_1632_kzw3rz.jpg" >
       <%end%>
       <div class="caption">
         <h3><%=artist.name%></h3>
@@ -13,6 +15,13 @@
     </div>
   </div>
   <%end%>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail well">
+      <img alt="Artist picture" style="height: 150px; width: 150px; display: block;" src="http://res.cloudinary.com/dov11/image/upload/c_crop,h_366,w_366/v1510476250/366px-Musician_Holding_Bagpipes_1632_kzw3rz.jpg" >
+      <div class="caption">
+        <h3>New artist</h3>
+        <p><%= link_to "Add Artist", new_artist_path, class: "btn btn-success" %></p>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "Add Artist", new_artist_path, class: "btn btn-success" %>

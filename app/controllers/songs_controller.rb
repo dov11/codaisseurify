@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   def show
-    @artist_name=name_of_song_artist
+    @artist=set_artist
     # @duration = @song.convert_to_time
   end
   def new
@@ -54,10 +54,6 @@ class SongsController < ApplicationController
     params
     .require(:song)
     .permit(:name, :length, :release_date)
-  end
-
-  def name_of_song_artist
-    set_song.artist.name
   end
 
 end
