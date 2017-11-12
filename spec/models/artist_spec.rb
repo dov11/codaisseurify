@@ -54,4 +54,16 @@ RSpec.describe Artist, type: :model do
     end
   end
 
+  describe "sorting" do
+    let!(:artist1) { create :artist, name: "Ab" }
+    let!(:artist2) { create :artist, name: "Aa" }
+    let!(:artist3) { create :artist, name: "z" }
+    it "returns sortings by name and creation" do
+      expect(Artist.sort_by_name_des).to eq([artist3, artist1, artist2])
+      expect(Artist.sort_by_name_ascending).to eq([artist2, artist1, artist3])
+      expect(Artist.sort_by_created_des).to eq([artist3, artist2, artist1])
+      expect(Artist.sort_by_created_asc).to eq([artist1, artist2, artist3])
+    end
+  end
+
 end
