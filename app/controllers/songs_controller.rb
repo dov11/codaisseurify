@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   def show
     @artist=set_artist
+    @song = set_song
     # @duration = @song.convert_to_time
   end
   def new
