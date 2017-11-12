@@ -3,6 +3,26 @@ class ArtistsController < ApplicationController
     @artists=Artist.all
   end
 
+  def index_sort
+    @artists = Artist.sort_by_name_ascending
+    render :index
+  end
+
+  def index_sort_des
+    @artists = Artist.sort_by_name_des
+    render :index
+  end
+
+  def index_sort_created_asc
+    @artists = Artist.sort_by_created_asc
+    render :index
+  end
+
+  def index_sort_created_des
+    @artists = Artist.sort_by_created_des
+    render :index
+  end
+
   def show
     @artist=set_artist
   end
