@@ -13,7 +13,7 @@
 
 <div class="form-group">
   <label>Release Date:</label>
-  <%= f.date_select :release_date %>
+  <%= f.date_select :release_date, start_year: 1700, end_year: Date.today.year+1, discard_day: true, default: {day: 1} %>
 </div>
 
 
