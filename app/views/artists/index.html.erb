@@ -5,6 +5,8 @@
     <div class="thumbnail">
       <%if artist.pictures.first%>
       <%= image_tag artist.pictures.first.image_url.thumbnail %>
+      <%else%>
+      <img alt="Artist picture" style="height: 150px; width: 150px; display: block;" src="http://res.cloudinary.com/dov11/image/upload/c_crop,h_366,w_366/v1510476250/366px-Musician_Holding_Bagpipes_1632_kzw3rz.jpg" >
       <%end%>
       <div class="caption">
         <h3><%=artist.name%></h3>
