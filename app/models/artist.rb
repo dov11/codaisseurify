@@ -8,4 +8,12 @@ class Artist < ApplicationRecord
     .include?(name)
   end
 
+  def self.sort_by_name_ascending
+    order :name
+  end
+
+  def self.sort_by_name_des
+    self.order('name desc')
+  end
+
 end

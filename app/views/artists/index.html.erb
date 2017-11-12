@@ -1,4 +1,9 @@
 <h1>Artists:</h1>
+<p>
+  <%= link_to "Order by name A↓Z", sort_path, class: "btn btn-default" %>
+  <%= link_to "Order by name Z↑A", sort_des_path, class: "btn btn-default" %>
+</p>
+
 <div class="row">
   <%@artists.each do |artist|%>
   <div class="col-sm-6 col-md-4">
