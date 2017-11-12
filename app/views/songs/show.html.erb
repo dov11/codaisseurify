@@ -1,6 +1,16 @@
-<h2><%=@song.name%></h2>
-<h3>A song by <%=@artist.name%></h3>
-<h3><%=@song.release_date.strftime("Released in %B, %Y")%></h3>
+<div class="panel-group">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2><%=@song.name%></h2>
+    </div>
+  </div>
+</div>
+<div class="well">
+  <h3>A song by <%=@artist.name%></h3>
+</div>
+<div class="well">
+  <h3><%=@song.release_date.strftime("Released in %B, %Y")%></h3>
+</div>
 <!-- <h3><%=@duration%></h3> -->
 
 <%= link_to "Back to artist songs", artist_path(@artist), class: "btn btn-default" %>

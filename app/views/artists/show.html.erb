@@ -1,11 +1,17 @@
-<h1>Songs by <%=@artist.name%></h1>
-<%if @artist.pictures.first%>
-<%= image_tag @artist.pictures.first.image_url.thumbnail %>
-<%else%>
-<img alt="Artist picture" style="height: 150px; width: 150px; display: block;" src="http://res.cloudinary.com/dov11/image/upload/c_crop,h_366,w_366/v1510476250/366px-Musician_Holding_Bagpipes_1632_kzw3rz.jpg" >
-<%end%>
+<div class="panel-group">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h1>Songs by <%=@artist.name%></h1>
+      <%if @artist.pictures.first%>
+      <%= image_tag @artist.pictures.first.image_url.thumbnail %>
+      <%else%>
+      <img alt="Artist picture" style="height: 150px; width: 150px; display: block;" src="http://res.cloudinary.com/dov11/image/upload/c_crop,h_366,w_366/v1510476250/366px-Musician_Holding_Bagpipes_1632_kzw3rz.jpg" >
+      <%end%>
+    </div>
+  </div>
+</div>
 <%@artist.songs.each do |song| %>
-<p class="jumbotron">
+<p class="well">
   <%= link_to song.name, artist_song_path(@artist, song)%>
   <span><%= link_to "Delete song", artist_song_path(@artist, song), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }%></span>
   <span><%= link_to "Edit song", edit_artist_song_path(@artist, song), class: "btn btn-info"%></span>
