@@ -13,7 +13,7 @@
 
 <div class="form-group">
   <label>Active since:</label>
-  <%= f.date_select :active_since %>
+  <%= f.date_select :active_since, start_year: 1700, end_year: Date.today.year+1, discard_day: true, default: {day: 1} %>
 </div>
 
 <div class="form-group">
