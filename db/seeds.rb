@@ -19,4 +19,4 @@ picture_alp = Picture.create!(remote_image_url_url: "http://res.cloudinary.com/d
 picture_night = Picture.create!(remote_image_url_url: "http://res.cloudinary.com/dov11/image/upload/v1510440144/220px-Midnightranger_utp7fa.jpg", description: "This is the cover art for Midnight Madness (album). The cover art copyright is believed to belong to the record label or the graphic artist(s)", artist: nightranger)
 picture_time = Picture.create!(remote_image_url_url: "http://res.cloudinary.com/dov11/image/upload/v1510440154/Timecop1983_vuetkl.jpg", artist: timecop)
 picture_imm = Picture.create!(remote_image_url_url: "http://res.cloudinary.com/dov11/image/upload/v1510440144/Battles_In_The_North_drsef5.jpg", artist: immortal)
-picture_cure = Picture.create!(remote_image_url_url: "http://res.cloudinary.com/dov11/image/upload/v1510440144/320px-The_Cure_Live_in_Singapore_2-_1st_August_2007_vlnhxg.jpg", artist: cure)
+picture_cure = Picture.create!(remote_image_url_url: "http://res.cloudinary.com/dov11/image/upload/c_crop,h_210,w_210/v1510440144/320px-The_Cure_Live_in_Singapore_2-_1st_August_2007_vlnhxg.jpg", artist: cure)
