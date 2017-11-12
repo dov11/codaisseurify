@@ -7,6 +7,8 @@ RSpec.describe Artist, type: :model do
       artist.valid?
       expect(artist.errors).to have_key(:name)
     end
+
+    it { should validate_uniqueness_of(:name) }
   end
 
   describe "association with song" do
