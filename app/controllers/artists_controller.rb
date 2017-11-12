@@ -26,12 +26,12 @@ class ArtistsController < ApplicationController
   def destroy
     artist = set_artist
     if !artist.core_artist?
-    artist.destroy
-    redirect_to root_path, notice: "Artist destroyed"
-  else
-    flash[:alert] = "Core artists cannot be destroyed, you can try to destroy other artists"
-    render :show
-  end
+      artist.destroy
+      redirect_to root_path, notice: "Artist destroyed"
+    else
+      flash[:alert] = "Core artists cannot be destroyed, you can try to destroy other artists"
+      render :show
+    end
   end
 
   private
