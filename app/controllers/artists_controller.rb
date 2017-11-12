@@ -25,8 +25,6 @@ class ArtistsController < ApplicationController
 
   def destroy
     artist = set_artist
-    artist.pictures.destroy_all
-    artist.songs.destroy_all
     artist.destroy
     redirect_to root_path, notice: "Artist destroyed"
   end
@@ -42,7 +40,7 @@ class ArtistsController < ApplicationController
   end
 
   def pictures_params
-    params[:pictures].present? ? params.require(:pictures) : []  
+    params[:pictures].present? ? params.require(:pictures) : []
   end
 
 end
