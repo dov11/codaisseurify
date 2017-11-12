@@ -25,8 +25,13 @@ class ArtistsController < ApplicationController
 
   def destroy
     artist = set_artist
+    if !core_artist?
     artist.destroy
     redirect_to root_path, notice: "Artist destroyed"
+  else
+    flash[:alert] = "Core artists cannot be destroyed, you can try to destroy other artists"
+    render :show
+  end
   end
 
   private
@@ -37,6 +42,11 @@ class ArtistsController < ApplicationController
 
   def artist_params
     params.require(:artist).permit(:name, :active_since)
+  end
+
+  def core_artist?
+    ["Alphaville", "Night Ranger", "Immortal", "Timecop1983", "The Cure", "Artist3"]
+    .include?(set_artist.name)
   end
 
   def pictures_params
