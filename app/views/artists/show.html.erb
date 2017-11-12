@@ -1,6 +1,8 @@
 <h1>Songs by <%=@artist.name%></h1>
 <%if @artist.pictures.first%>
 <%= image_tag @artist.pictures.first.image_url.thumbnail %>
+<%else%>
+<img alt="Artist picture" style="height: 150px; width: 150px; display: block;" src="http://res.cloudinary.com/dov11/image/upload/c_crop,h_366,w_366/v1510476250/366px-Musician_Holding_Bagpipes_1632_kzw3rz.jpg" >
 <%end%>
 <%@artist.songs.each do |song| %>
 <p class="jumbotron">
@@ -13,3 +15,5 @@
 <%= link_to "Add Song", new_artist_song_path(@artist), class: "btn btn-success" %>
 
 <%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
+
+<%= link_to "List of artists", root_path, class: "btn btn-default" %>
