@@ -23,4 +23,10 @@ RSpec.describe Song, type: :model do
       expect(song.errors).to have_key(:length)
     end
   end
+  describe "setting default values" do
+    it "is setting default duration" do
+      song = Song.new()
+      expect(song.length).to be 1
+    end
+  end
 end
