@@ -37,7 +37,7 @@ class ArtistsController < ApplicationController
       pictures_params.each do |picture|
         @artist.pictures.create(image_url: picture)
       end
-      redirect_to new_artist_song_path(@artist), notice: "Artist created, you can now add songs"
+      redirect_to new_artist_song_path(@artist), notice: "Artist created, you can now add a first song or do it later"
     else
       render :new
     end

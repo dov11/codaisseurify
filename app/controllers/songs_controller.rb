@@ -27,7 +27,7 @@ class SongsController < ApplicationController
     if set_song.update(song_params)
       redirect_to artist_path(set_artist), notice: "Song updated"
     else
-      render :edit #needs fixing
+      redirect_to artist_path(set_artist), notice: "Unaccaptable parameters, please try again"
     end
   end
 
