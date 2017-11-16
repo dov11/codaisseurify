@@ -12,11 +12,20 @@ class SongsController < ApplicationController
   def create
     @song = set_artist.songs.build(song_params)
 
-    if @song.save
-      redirect_to artist_path(set_artist), notice: "Song created"
-    else
-      render :new
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to artist_path(set_artist), notice: "Song created" }
+        format.json { render :show, status: :created, location: @song }
+      else
+        format.html { render :new }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
     end
+    # if @song.save
+    #   redirect_to artist_path(set_artist), notice: "Song created"
+    # else
+    #   render :new
+    # end
   end
 
   def edit

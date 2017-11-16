@@ -25,6 +25,7 @@ class ArtistsController < ApplicationController
 
   def show
     @artist=set_artist
+    @song = Song.new
   end
 
   def new
