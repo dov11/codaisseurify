@@ -1,10 +1,10 @@
-function createSong(name, release_date, duration) {
-  var newSong = { name: name, release_date: release_date, duration: duration};
+function createSong(name) {
+  var newSong = { name: name};
   var path = window.location.pathname
 
   $.ajax({
     type: "POST",
-    url: path + "songs.json",
+    url: "" + path + "/songs.json",
     data: JSON.stringify({
       song: newSong
     }),
@@ -26,6 +26,28 @@ function createSong(name, release_date, duration) {
   .fail(function(error) {
     console.log(error)
     error_message = error.responseJSON.title[0];
-    // showError(error_message);
+    showError(error_message);
   });
 }
+
+function showError(message) {
+  var errorHelpBlock = $('<span class="help-block"></span>')
+    .attr('id', 'error_message')
+    .text(message);
+
+  $("#formgroup-title")
+    .addClass("has-error")
+    .append(errorHelpBlock);
+}
+
+function submitSong(event) {
+  event.preventDefault();
+  //  resetErrors();
+  //  need to add slectors id for date and length
+  createSong($("#song_name").val());
+  $("#song_name").val(null);
+}
+
+$(document).ready(function() {
+  $("#new_song").bind('submit', submitSong);
+});

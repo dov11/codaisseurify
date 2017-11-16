@@ -26,6 +26,7 @@ class ArtistsController < ApplicationController
   def show
     @artist=set_artist
     @song = Song.new
+    render json: @artist if params[:format] == 'json'
   end
 
   def new
