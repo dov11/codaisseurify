@@ -1,5 +1,5 @@
-function createSong(name) {
-  var newSong = { name: name};
+function createSong(name, release_date, duration) {
+  var newSong = { name: name, release_date: release_date, length: duration };
   var path = window.location.pathname
 
   $.ajax({
@@ -44,10 +44,21 @@ function submitSong(event) {
   event.preventDefault();
   //  resetErrors();
   //  need to add slectors id for date and length
-  createSong($("#song_name").val());
+  // createSong($("#song_name").val());
+  createSong(...getSongAttributes());
   $("#song_name").val(null);
+  $("#song_length").val(1);
+  $("#song_release_date_1i").val(new Date().getYear());
+  $("#song_release_date_2i").val(new Date().getMonth());
+  $("#button-save").removeAttr('data-disable-with');
+}
+
+function getSongAttributes() {
+  let date = `${$("#song_release_date_1i").val()}-${$("#song_release_date_2i").val()}-01 00:00:00`
+  return [$("#song_name").val(), date, $("#song_length").val()];
 }
 
 $(document).ready(function() {
+  $("#button-save").attr('data-disable-with', "Save")
   $("#new_song").bind('submit', submitSong);
 });
