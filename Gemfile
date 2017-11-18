@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.3.1'
+ruby '2.4.1'
 gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -17,6 +17,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'carrierwave', '0.11.2'
 gem 'cloudinary', '1.2.3'
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'rails_12factor', group: :production
 
 group :development, :test do

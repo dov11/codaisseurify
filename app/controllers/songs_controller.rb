@@ -2,6 +2,7 @@ class SongsController < ApplicationController
   def show
     @artist=set_artist
     @song = set_song
+    render json: @song if params[:format] == 'json'
     # @duration = @song.convert_to_time
   end
   def new
@@ -11,10 +12,14 @@ class SongsController < ApplicationController
   def create
     @song = set_artist.songs.build(song_params)
 
-    if @song.save
-      redirect_to artist_path(set_artist), notice: "Song created"
-    else
-      render :new
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to artist_path(set_artist), notice: "Song not created" }
+        format.json { render json: {song: @song, status: :created} }
+      else
+        format.html { render :new }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
     end
   end
 
