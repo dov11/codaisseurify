@@ -25,6 +25,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'factory_girl_rails', '4.7.0'
   gem 'faker', '1.6.6'
+  gem 'capybara', '~> 2.9', '>= 2.9.1'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do
@@ -35,8 +38,8 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 2.9', '>= 2.9.1'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
