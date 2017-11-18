@@ -25,4 +25,6 @@
 
 <%= link_to "Delete Artist", artist_path(@artist), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This will delete artist and all artist's songs" } %>
 
+<span class="btn btn-danger" id="delete-all-songs" onclick="deleteAllSongs()">Delete All Songs</span>
+
 <%= link_to "List of artists", root_path, class: "btn btn-default" %>
