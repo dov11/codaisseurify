@@ -17,38 +17,44 @@ function createSong(name, release_date, duration) {
     var songId = data.id;
 
     var anchor = $('<a></a>')
-      .attr('id', songId)
-      .html(name);
+    .attr('id', songId)
+    .html(name);
 
     $("#songsList").append(anchor);
   })
 
   .fail(function(error) {
     console.log(error)
-    error_message = error.responseJSON.title[0];
+    error_message = "Name " + error.responseJSON.name[0];
+    resetErrors();
     showError(error_message);
   });
 }
 
 function showError(message) {
-  var errorHelpBlock = $('<span class="help-block"></span>')
-    .attr('id', 'error_message')
-    .text(message);
+  let errorHelpBlock = $('<span class="help-block"></span>')
+  .attr('id', 'error_message')
+  .text(message);
 
   $("#formgroup-title")
-    .addClass("has-error")
-    .append(errorHelpBlock);
+  .addClass("has-error")
+  .append(errorHelpBlock);
+}
+
+function resetErrors() {
+  $("#formgroup-title").removeClass("has-error")
+  $(".help-block").remove();
 }
 
 function submitSong(event) {
   event.preventDefault();
-  //  resetErrors();
+  resetErrors();
   //  need to add slectors id for date and length
   // createSong($("#song_name").val());
   createSong(...getSongAttributes());
   $("#song_name").val(null);
   $("#song_length").val(1);
-  $("#song_release_date_1i").val(new Date().getYear());
+  $("#song_release_date_1i").val(new Date().getFullYear());
   $("#song_release_date_2i").val(new Date().getMonth());
   $("#button-save").removeAttr('data-disable-with');
 }
