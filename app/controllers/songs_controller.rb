@@ -39,7 +39,10 @@ class SongsController < ApplicationController
   def destroy
     song = set_song
     song.destroy
-    redirect_to artist_path(set_artist), notice: "Song deleted"
+    respond_to do |format|
+      #disabled: format.html { redirect_to artist_path(set_artist), notice: "Song deleted" }
+      format.json { render json: {song: @song, status: :deleted}}
+    end
   end
   # def convert_to_time
   #   minutes = (@song.length / 60) % 60

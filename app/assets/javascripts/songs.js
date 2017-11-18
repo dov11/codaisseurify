@@ -22,9 +22,28 @@ function createSong(name, release_date, duration) {
     .attr('href', songlink)
     .html(name);
 
+    let deleteButton = $('<a class="btn btn-danger">Delete Song</a>')
+    .attr('id', songId)
+    .on('click', deleteSong);
+
+    let deleteSpan = $('<span class="delete-song"></span>')
+    .append(deleteButton)
+
+    let editLink = path+'/songs/'+songId+'/edit'
+
+    let editButton = $('<a class="btn btn-info"></a>')
+    .attr('href', editLink)
+    .html('Edit Song')
+    // debugger
+    let editSpan = $('<span></span>')
+    .append(editButton)
+
     let well = $('<p class="well"></p>')
     .attr('id', 'well-' + songId)
     .append(anchor)
+    .append(deleteSpan)
+    .append(editSpan)
+
     $("#songsList").append(well);
   })
 
@@ -39,7 +58,7 @@ function createSong(name, release_date, duration) {
 function showError(message) {
   let errorHelpBlock = $('<span class="help-block"></span>')
   .attr('id', 'error_message')
-  .text(message);
+  .html(message);
 
   $("#formgroup-title")
   .addClass("has-error")
@@ -55,7 +74,6 @@ function submitSong(event) {
   event.preventDefault();
   resetErrors();
   //  need to add slectors id for date and length
-  // createSong($("#song_name").val());
   createSong(...getSongAttributes());
   $("#song_name").val(null);
   $("#song_length").val(1);
@@ -69,7 +87,28 @@ function getSongAttributes() {
   return [$("#song_name").val(), date, $("#song_length").val()];
 }
 
+function deleteSong() {
+  event.preventDefault();
+  let path = window.location.pathname
+  let songId = $(this).attr('id')
+  $.ajax({
+    type: "DELETE",
+    url: path + "/songs/" + songId + ".json",
+    contentType: "application/json",
+    dataType: "json"})
+    .done(function(data) {
+      console.log(data)
+      $("#well-"+songId).remove()
+    });
+}
+
+// function initiateDeleteSong() {
+//   let songId = $(this).attr('id');
+//   deleteSong(songId);
+// }
+
 $(document).ready(function() {
   $("#button-save").attr('data-disable-with', "Save")
-  $("#new_song").bind('submit', submitSong);
+  $("#new_song").on('submit', submitSong);
+  $(".delete-song").children().on('click', deleteSong);
 });

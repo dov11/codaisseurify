@@ -1,4 +1,4 @@
-<div class="panel-group">
+<div class="panel-group" id="artist-panel">
   <div class="panel panel-success">
     <div class="panel-heading">
       <h1>Songs by <%=@artist.name%></h1>
@@ -14,9 +14,9 @@
 <!-- Change rendering -->
 <div id="songsList">
   <%@artist.songs.each do |song| %>
-  <p class="well">
+  <p class="well" id="well-<%=song.id%>">
     <%= link_to song.name, artist_song_path(@artist, song)%>
-    <span><%= link_to "Delete song", artist_song_path(@artist, song), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" }%></span>
+    <span class="delete-song"><a class="btn btn-danger" id="<%=song.id%>">Delete Song</a></span>
     <span><%= link_to "Edit song", edit_artist_song_path(@artist, song), class: "btn btn-info"%></span>
   </p>
     <%end%>
