@@ -89,8 +89,8 @@ function getSongAttributes() {
 
 function deleteSong() {
   event.preventDefault();
-  let path = window.location.pathname
-  let songId = $(this).attr('id')
+  let path = window.location.pathname;
+  let songId = $(this).attr('id');
   $.ajax({
     type: "DELETE",
     url: path + "/songs/" + songId + ".json",
@@ -101,11 +101,19 @@ function deleteSong() {
       $("#well-"+songId).remove();
     });
 }
-
-// function initiateDeleteSong() {
-//   let songId = $(this).attr('id');
-//   deleteSong(songId);
-// }
+function deleteAllSongs() {
+  $.each($(".delete-song").children(), function(key, song) {
+    let $song = $(song);
+    let songId = $(song).attr('id');
+    let path = window.location.pathname;
+    $.ajax({
+      type: "DELETE",
+      url: path + "/songs/" + songId + ".json",
+      contentType: "application/json",
+      dataType: "json"});
+      $song.parent().parent().remove();
+  });
+}
 
 $(document).ready(function() {
   $("#button-save").attr('data-disable-with', "Save")
