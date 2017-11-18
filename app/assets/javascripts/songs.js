@@ -1,6 +1,6 @@
 function createSong(name, release_date, duration) {
-  var newSong = { name: name, release_date: release_date, length: duration };
-  var path = window.location.pathname
+  let newSong = { name: name, release_date: release_date, length: duration };
+  let path = window.location.pathname
 
   $.ajax({
     type: "POST",
@@ -14,13 +14,18 @@ function createSong(name, release_date, duration) {
   .done(function(data) {
     console.log(data);
 
-    var songId = data.id;
+    let songId = data.song.id;
+    let songlink = path + '/songs/' + songId;
 
-    var anchor = $('<a></a>')
+    let anchor = $('<a></a>')
     .attr('id', songId)
+    .attr('href', songlink)
     .html(name);
 
-    $("#songsList").append(anchor);
+    let well = $('<p class="well"></p>')
+    .attr('id', 'well-' + songId)
+    .append(anchor)
+    $("#songsList").append(well);
   })
 
   .fail(function(error) {
