@@ -15,14 +15,14 @@ function createSong(name, release_date, duration) {
     console.log(data);
 
     let songId = data.song.id;
-    let songlink = path + '/songs/' + songId;
+    let songLink = path + '/songs/' + songId;
 
     let anchor = $('<a></a>')
-    .attr('id', songId)
-    .attr('href', songlink)
+    .attr('id', 'link-to-' + songId)
+    .attr('href', songLink)
     .html(name);
 
-    let deleteButton = $('<a class="btn btn-danger">Delete Song</a>')
+    let deleteButton = $('<a class="btn btn-danger btn-delete">Delete Song</a>')
     .attr('id', songId)
     .on('click', deleteSong);
 
@@ -97,8 +97,8 @@ function deleteSong() {
     contentType: "application/json",
     dataType: "json"})
     .done(function(data) {
-      console.log(data)
-      $("#well-"+songId).remove()
+      console.log(data);
+      $("#well-"+songId).remove();
     });
 }
 
