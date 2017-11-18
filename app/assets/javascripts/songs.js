@@ -22,9 +22,28 @@ function createSong(name, release_date, duration) {
     .attr('href', songlink)
     .html(name);
 
+    let deleteButton = $('<a class="btn btn-danger">Delete Song</a>')
+    .attr('id', songId)
+    .on('click', deleteSong);
+
+    let deleteSpan = $('<span class="delete-song"></span>')
+    .append(deleteButton)
+
+    let editLink = path+'/songs/'+songId+'/edit'
+
+    let editButton = $('<a class="btn btn-info"></a>')
+    .attr('href', editLink)
+    .html('Edit Song')
+    // debugger
+    let editSpan = $('<span></span>')
+    .append(editButton)
+
     let well = $('<p class="well"></p>')
     .attr('id', 'well-' + songId)
     .append(anchor)
+    .append(deleteSpan)
+    .append(editSpan)
+
     $("#songsList").append(well);
   })
 
@@ -91,5 +110,5 @@ function deleteSong() {
 $(document).ready(function() {
   $("#button-save").attr('data-disable-with', "Save")
   $("#new_song").on('submit', submitSong);
-  $("#delete-song").children().on('click', deleteSong);
+  $(".delete-song").children().on('click', deleteSong);
 });

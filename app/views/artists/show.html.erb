@@ -16,7 +16,7 @@
   <%@artist.songs.each do |song| %>
   <p class="well" id="well-<%=song.id%>">
     <%= link_to song.name, artist_song_path(@artist, song)%>
-    <span id="delete-song"><a class="btn btn-danger" id="<%=song.id%>">Delete Song</a></span>
+    <span class="delete-song"><a class="btn btn-danger" id="<%=song.id%>">Delete Song</a></span>
     <span><%= link_to "Edit song", edit_artist_song_path(@artist, song), class: "btn btn-info"%></span>
   </p>
     <%end%>
