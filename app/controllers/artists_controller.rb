@@ -1,6 +1,11 @@
 class ArtistsController < ApplicationController
+
   def index
-    @artists=Artist.all
+    if params[:options]
+      @artists=Artist.sort_by(params[:options]).all
+    else
+      @artists=Artist.all
+  end
   end
 
   def index_sort

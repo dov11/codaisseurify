@@ -24,4 +24,17 @@ class Artist < ApplicationRecord
     self.order('created_at desc')
   end
 
+  def self.sort_by(option)
+    case option
+    when "Order by name Z↓A"
+      self.sort_by_name_des
+    when "Order by time of creation↑"
+      self.sort_by_created_asc
+    when "Order by time of creation↓"
+      self.sort_by_created_des
+    else
+      self.sort_by_name_ascending
+    end
+  end
+
 end

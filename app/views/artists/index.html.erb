@@ -4,10 +4,11 @@
       <h1>Artists:</h1>
     </div>
     <p>
-      <%= link_to "Order by name A↑Z", sort_path, class: "btn btn-default" %>
-      <%= link_to "Order by name Z↓A", sort_des_path, class: "btn btn-default" %>
-      <%= link_to "Order by time of creation↑", sort_created_asc_path, class: "btn btn-default" %>
-      <%= link_to "Order by time of creation↓", sort_created_des_path, class: "btn btn-default" %>
+      <%= form_tag({}, {:method => :get}) do %>
+        <%= select_tag(:options,
+        options_for_select(["Order by name A↑Z", "Order by name Z↓A", "Order by time of creation↑", "Order by time of creation↓"]),
+        onchange: "this.form.submit()") %>
+      <% end %>
     </p>
   </div>
 </div>
