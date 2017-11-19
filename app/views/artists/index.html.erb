@@ -6,7 +6,7 @@
     <p>
       <%= form_tag({}, {:method => :get}) do %>
         <%= select_tag(:options,
-        options_for_select(["Order by name A↑Z", "Order by name Z↓A", "Order by time of creation↑", "Order by time of creation↓"]),
+        options_for_select(["Sort by", "Order by name A↑Z", "Order by name Z↓A", "Order by time of creation↑", "Order by time of creation↓"]),
         onchange: "this.form.submit()") %>
       <% end %>
     </p>

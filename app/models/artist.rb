@@ -3,10 +3,6 @@ class Artist < ApplicationRecord
   has_many :pictures, dependent: :destroy
   validates :name, presence: true, uniqueness: true
 
-  def core_artist?
-    ["Alphaville", "Night Ranger", "Immortal", "Timecop1983", "The Cure", "Artist3"]
-    .include?(name)
-  end
 
   def self.sort_by_name_ascending
     order :name
@@ -38,3 +34,8 @@ class Artist < ApplicationRecord
   end
 
 end
+
+# def core_artist?
+#   ["Alphaville", "Night Ranger", "Immortal", "Timecop1983", "The Cure", "Artist3"]
+#   .include?(name)
+# end
