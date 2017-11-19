@@ -99,6 +99,7 @@ function getSongAttributes() {
 
 function deleteSong() {
   event.preventDefault();
+  resetErrors();
   let path = window.location.pathname;
   let songId = $(this).attr('id');
   $.ajax({
@@ -112,6 +113,7 @@ function deleteSong() {
     });
 }
 function deleteAllSongs() {
+  resetErrors();
   $.each($(".delete-song").children(), function(key, song) {
     let $song = $(song);
     let songId = $(song).attr('id');

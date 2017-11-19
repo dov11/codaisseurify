@@ -10,6 +10,7 @@ feature 'Manage songs', js: true do
     page.execute_script("$('#new_song').submit()")
 
     expect(page).to have_content('Unique Song name')
+    expect(page).to have_content('Unique Song name added!')
 
     sleep(1)
 
@@ -19,6 +20,22 @@ feature 'Manage songs', js: true do
 
     expect(page).to have_content('Unique Song name')
   end
+  scenario 'try to add a song with no name' do
+    visit artist_path(artist)
+
+    page.execute_script("$('#new_song').submit()")
+
+    expect(page).to have_content("Name can't be blank")
+
+    sleep(1)
+
+    fill_in "song_name", with: "Unique Song name"
+    page.execute_script("$('#new_song').submit()")
+    expect(page).to have_content('Unique Song name')
+    expect(page).to have_no_content("Name can't be blank")
+
+  end
+
   scenario 'delete a song' do
     visit artist_path(artist)
     fill_in "song_name", with: "Unique Song name"
