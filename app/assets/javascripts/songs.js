@@ -15,6 +15,7 @@ function createSong(name, release_date, duration) {
     console.log(data);
 
     let songId = data.song.id;
+    let songName = data.song.name;
     let songLink = path + '/songs/' + songId;
 
     let anchor = $('<a></a>')
@@ -34,7 +35,7 @@ function createSong(name, release_date, duration) {
     let editButton = $('<a class="btn btn-info"></a>')
     .attr('href', editLink)
     .html('Edit Song')
-    // debugger
+
     let editSpan = $('<span></span>')
     .append(editButton)
 
@@ -45,12 +46,13 @@ function createSong(name, release_date, duration) {
     .append(editSpan)
 
     $("#songsList").append(well);
+    showSuccess(songName);
   })
 
   .fail(function(error) {
     console.log(error)
     error_message = "Name " + error.responseJSON.name[0];
-    resetErrors();
+    // resetErrors();
     showError(error_message);
   });
 }
@@ -64,6 +66,14 @@ function showError(message) {
   .addClass("has-error")
   .append(errorHelpBlock);
 }
+function showSuccess(song) {
+  let successHelpBlock = $('<span class="help-block"></span>')
+  .attr('id', 'error_message')
+  .html(song + ' added!');
+
+  $("#formgroup-title")
+  .append(successHelpBlock);
+}
 
 function resetErrors() {
   $("#formgroup-title").removeClass("has-error")
@@ -73,7 +83,7 @@ function resetErrors() {
 function submitSong(event) {
   event.preventDefault();
   resetErrors();
-  //  need to add slectors id for date and length
+
   createSong(...getSongAttributes());
   $("#song_name").val(null);
   $("#song_length").val(1);
