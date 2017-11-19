@@ -45,14 +45,14 @@ RSpec.describe Artist, type: :model do
     end
   end
 
-  describe "core_artist?" do
-    let(:core_artist) { create :artist, name: "Alphaville"}
-    let(:non_core_artist) { create :artist, name: "New name"}
-    it "returns true if the artist is core artist" do
-      expect(core_artist.core_artist?).to eq(true)
-      expect(non_core_artist.core_artist?).to eq(false)
-    end
-  end
+  # describe "core_artist?" do
+  #   let(:core_artist) { create :artist, name: "Alphaville"}
+  #   let(:non_core_artist) { create :artist, name: "New name"}
+  #   it "returns true if the artist is core artist" do
+  #     expect(core_artist.core_artist?).to eq(true)
+  #     expect(non_core_artist.core_artist?).to eq(false)
+  #   end
+  # end
 
   describe "sorting" do
     let!(:artist1) { create :artist, name: "Ab" }
