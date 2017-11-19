@@ -1,27 +1,13 @@
 class ArtistsController < ApplicationController
+
   def index
-    @artists=Artist.all
+    if params[:options]
+      @artists=Artist.sort_by(params[:options]).all
+    else
+      @artists=Artist.all
+    end
   end
 
-  def index_sort
-    @artists = Artist.sort_by_name_ascending
-    render :index
-  end
-
-  def index_sort_des
-    @artists = Artist.sort_by_name_des
-    render :index
-  end
-
-  def index_sort_created_asc
-    @artists = Artist.sort_by_created_asc
-    render :index
-  end
-
-  def index_sort_created_des
-    @artists = Artist.sort_by_created_des
-    render :index
-  end
 
   def show
     @artist=set_artist
@@ -51,7 +37,7 @@ class ArtistsController < ApplicationController
       artist.destroy
       redirect_to root_path, notice: "Artist destroyed"
     else
-      flash[:alert] = "Core artists cannot be destroyed, you can try to destroy other artists"
+      # flash[:alert] = "Core artists cannot be destroyed, you can try to destroy other artists"
       render :show
     end
   end
