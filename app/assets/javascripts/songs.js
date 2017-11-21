@@ -97,7 +97,7 @@ function getSongAttributes() {
   return [$("#song_name").val(), date, $("#song_length").val()];
 }
 
-function deleteSong() {
+function deleteSong(event) {
   event.preventDefault();
   resetErrors();
   let path = window.location.pathname;
